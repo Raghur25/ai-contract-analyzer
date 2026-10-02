@@ -56,8 +56,8 @@ VAKEEL-CONTRACT-API/
 ### 1. Clone and install
 
 ```bash
-git clone https://github.com/Raghur25/<repo-name>.git
-cd <repo-name>
+git clone https://github.com/Raghur25/ai-contract-analyzer.git
+cd ai-contract-analyzer
 
 python -m venv .venv
 # Windows (PowerShell)
