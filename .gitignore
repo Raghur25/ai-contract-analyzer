@@ -1,0 +1,29 @@
+# Secrets - never commit these
+.env
+.env.*
+!.env.example
+
+# Uploaded contracts (confidential client documents)
+uploads/*
+!uploads/.gitkeep
+
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.pytest_cache/
+.ruff_cache/
+.mypy_cache/
+.coverage
+htmlcov/
+
+# Virtual environments
+.venv/
+venv/
+env/
+
+# IDE / OS
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db

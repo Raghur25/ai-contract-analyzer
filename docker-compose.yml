@@ -1,0 +1,29 @@
+services:
+
+  mongodb:
+    image: mongo:latest
+    container_name: mongodb
+    ports:
+      - '27017:27017'
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: ${MONGO_ROOT_USERNAME:?set MONGO_ROOT_USERNAME in .env}
+      MONGO_INITDB_ROOT_PASSWORD: ${MONGO_ROOT_PASSWORD:?set MONGO_ROOT_PASSWORD in .env}
+    volumes:
+      - mongodb_data:/data/db
+
+
+  mongo-express:
+    image: mongo-express:latest
+    container_name: mongo-express
+    ports:
+      - '8081:8081'
+    environment:
+      ME_CONFIG_MONGODB_URL: "mongodb://${MONGO_ROOT_USERNAME:?set MONGO_ROOT_USERNAME in .env}:${MONGO_ROOT_PASSWORD:?set MONGO_ROOT_PASSWORD in .env}@mongodb:27017/?authSource=admin"
+      ME_CONFIG_BASICAUTH_ENABLED: "true"
+      ME_CONFIG_BASICAUTH_USERNAME: ${MONGO_EXPRESS_USERNAME:?set MONGO_EXPRESS_USERNAME in .env}
+      ME_CONFIG_BASICAUTH_PASSWORD: ${MONGO_EXPRESS_PASSWORD:?set MONGO_EXPRESS_PASSWORD in .env}
+    depends_on:
+      - mongodb
+
+volumes:
+  mongodb_data:
